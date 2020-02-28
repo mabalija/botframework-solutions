@@ -22,6 +22,7 @@ namespace Luis
             l_General,
             q_Chitchat,
             q_Faq,
+            q_Corona,
             None
         };
         [JsonProperty("intents")]

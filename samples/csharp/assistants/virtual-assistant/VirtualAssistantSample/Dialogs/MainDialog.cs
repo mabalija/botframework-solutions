@@ -340,6 +340,12 @@ namespace VirtualAssistantSample.Dialogs
 
                     return await stepContext.BeginDialogAsync("Chitchat");
                 }
+                else if (dispatchIntent == DispatchLuis.Intent.q_Corona)
+                {
+                    stepContext.SuppressCompletionMessage(true);
+
+                    return await stepContext.BeginDialogAsync("Corona");
+                }
                 else
                 {
                     stepContext.SuppressCompletionMessage(true);
@@ -412,6 +418,7 @@ namespace VirtualAssistantSample.Dialogs
             if (dispatchIntent.ToString().Equals(DispatchLuis.Intent.l_General.ToString(), StringComparison.InvariantCultureIgnoreCase) ||
                 dispatchIntent.ToString().Equals(DispatchLuis.Intent.q_Faq.ToString(), StringComparison.InvariantCultureIgnoreCase) ||
                 dispatchIntent.ToString().Equals(DispatchLuis.Intent.q_Chitchat.ToString(), StringComparison.InvariantCultureIgnoreCase) ||
+                dispatchIntent.ToString().Equals(DispatchLuis.Intent.q_Corona.ToString(), StringComparison.InvariantCultureIgnoreCase) ||
                 dispatchIntent.ToString().Equals(DispatchLuis.Intent.None.ToString(), StringComparison.InvariantCultureIgnoreCase))
             {
                 return false;
