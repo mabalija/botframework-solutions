@@ -54,6 +54,7 @@ namespace VirtualAssistantSample
         {
             // Configure MVC
             services.AddControllers().AddNewtonsoftJson();
+            services.AddControllersWithViews();
 
             services.AddSingleton(Configuration);
 
