@@ -8,7 +8,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Luis;
 using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.AI.QnA.Dialogs;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 using Microsoft.Bot.Solutions.Extensions;
@@ -19,6 +18,7 @@ using Microsoft.Bot.Solutions.Skills.Models;
 using Microsoft.Extensions.DependencyInjection;
 using VirtualAssistantSample.Models;
 using VirtualAssistantSample.Services;
+using VirtualAssistantSample.Utilities;
 
 namespace VirtualAssistantSample.Dialogs
 {
@@ -43,7 +43,6 @@ namespace VirtualAssistantSample.Dialogs
             _settings = serviceProvider.GetService<BotSettings>();
             _templateEngine = serviceProvider.GetService<LocaleTemplateEngineManager>();
             _skillsConfig = serviceProvider.GetService<SkillsConfiguration>();
-            TelemetryClient = telemetryClient;
 
             var userState = serviceProvider.GetService<UserState>();
             _userProfileState = userState.CreateProperty<UserProfileState>(nameof(UserProfileState));
@@ -92,6 +91,8 @@ namespace VirtualAssistantSample.Dialogs
             {
                 AddDialog(dialog);
             }
+
+            TelemetryClient = telemetryClient;
         }
 
         protected override async Task<DialogTurnResult> OnBeginDialogAsync(DialogContext innerDc, object options, CancellationToken cancellationToken = default)
